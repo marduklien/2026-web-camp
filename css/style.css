@@ -181,8 +181,9 @@ a:hover {
 /* 形象主視覺 */
 .banner {
   background-image: url(../img/blog_banner.png);
-  background-size: contain;
+  background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   height: 380px;
   width: 100%;
   margin-bottom: 80px;
@@ -360,8 +361,7 @@ a:hover {
   border-radius: 50%;
   text-align: center;
   &:hover {
-    color:  var(--neutral-0);
-    background: var(--neutral-500);
+    border: 1px solid  var(--neutral-700);
   }
 }
 
@@ -450,9 +450,14 @@ background:
   justify-content: center;
   align-items: center;
   .container {
-    gap: 24px;
-    padding: 80px 0px;
+    display: flex;
   }
+}
+
+
+.sub-img {
+  height: 100%;
+  flex: 5;
 }
 
 .sub-form {
@@ -462,6 +467,14 @@ background:
   align-items: center;
   gap: 24px;
   padding: 0 40px;
+  flex: 7;
+}
+
+.sub-info {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
 }
 
 .sub-title {
@@ -537,7 +550,7 @@ background:
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  flex: 4; 
+  flex: 5; 
 }
 
 .contact-title {
@@ -610,7 +623,7 @@ background:
   flex-direction: column;
   gap: 24px;
   padding: 0 40px;
-  flex: 8; 
+  flex: 7; 
 }
 
 .form-row {
