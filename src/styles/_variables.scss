@@ -1,0 +1,32 @@
+:root {
+  --primary-50: #FDF7F1;
+  --primary-100: #FDE6CF;
+  --primary-500: #F5B87B;
+  --primary-900: #24140B;
+
+  --neutral-0: #ffffff;
+  --neutral-500: #737373;
+  --neutral-700: #404040;
+  --neutral-900: #1E1E1E;
+
+  --dark-40a: rgba(0, 0, 0, 0.4);
+  --dark-60a: rgba(0, 0, 0, 0.6);
+}
+
+@mixin lg {
+  @media (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin sm {
+  @media (max-width: 576px) {
+    @content;
+  }
+}
