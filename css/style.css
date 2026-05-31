@@ -28,18 +28,17 @@
    ========================================================================== 
 */
 
-
 @mixin lg {
   @media (max-width: 1024px) {
     @content;
   }
-} 
+}
 
 @mixin md {
   @media (max-width: 768px) {
     @content;
   }
-} 
+}
 
 @mixin sm {
   @media (max-width: 576px) {
@@ -139,15 +138,49 @@ a:hover {
   padding: 0;
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 10;
+}
+
+.header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
 }
 
 .header a {
   display: block;
 }
 
+.brand {
+  display: flex;
+  align-items: center;
+}
+
 .logo {
+  padding: 12px 0;
+  width: 140px;
+     @media (max-width: 576px) {
+     padding: 14px 12px;
+       width: 112px;
+  }
+}
+
+.menu-toggle {
+  display: none;
+}
+
+.menu-toggle-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
   padding: 12px;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.menu-nav {
+  display: block;
 }
 
 .menu {
@@ -179,6 +212,8 @@ a:hover {
   background:var(--neutral-700);
 }
 
+
+
 /* 形象主視覺 */
 .banner {
   background-image: url(../img/blog_banner.png);
@@ -191,7 +226,14 @@ a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  
+   @media (max-width: 576px) {
+      background-image: url(../img/mobile/blog_banner.png);
+      height:380px;
+      margin-bottom: 40px;
+    }
 }
+
 
 .slogan {
   background: var(--dark-40a);
@@ -212,18 +254,32 @@ a:hover {
 .slogan h2 {
   font-size: 80px;
   margin-bottom: 8px;
+
+    @media (max-width: 576px) {
+    font-size: 40px;
+  }
 }
 
 .slogan p {
   font-size: 48px;
+
+  @media (max-width: 576px) {
+    font-size: 40px;
+  }
 }
 
 .slogan .bg {
   color: var(--primary-50);
   font-size: 300px;
+  line-height: 1.2;
   position: absolute;
-  top: 140px;
+  bottom: -116px;
   opacity: 0.2;
+  
+  @media (max-width: 576px) {
+    font-size: 160px;
+    bottom: -50px;
+  }
 }
 
 
@@ -238,12 +294,13 @@ a:hover {
   letter-spacing: 0.02rem;
   width: 100%;
   justify-content: space-between;
+    @media (max-width: 768px) {
+     max-width: 100%;
+  }
 }
 
 .sidebar {
   nav {
-    min-width: 180px;
-
     .nav-item {
       color: var(--neutral-700);
       display: block;
@@ -341,11 +398,20 @@ a:hover {
   }
 }
 
+@media (max-width: 768px) {
+  .post {
+    align-items: center;
+  }
+}
+
 .pagination {
   display: flex;
   justify-content: center;
   list-style: none; 
   padding: 0px;
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+  }
 }
 
 .pagination li a {
@@ -417,16 +483,23 @@ a:hover {
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
-    padding: 40px 12px;
+    padding: 0px 12px;
+  }
+
+  .header {
+    position: sticky;
   }
 
   .sidebar {
+    width: 100%;
+
     ul {
       display: flex;
       overflow-x: auto;
       scrollbar-width: none;
       -ms-overflow-style: none;
       -webkit-overflow-scrolling: touch;
+      touch-action: pan-x;
 
       .nav-item {
         font-size: 16px;
@@ -437,6 +510,52 @@ a:hover {
     ul::-webkit-scrollbar {
       display: none;
     }
+  }
+
+  .header .container {
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 12px;
+  }
+
+  .menu-toggle-btn {
+    display: flex;
+    order: 3;
+  }
+
+  .menu-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    background: var(--primary-50);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: max-height 0.3s ease, opacity 0.2s ease;
+  }
+
+  .menu-toggle:checked ~ .menu-nav {
+    max-height: 320px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .menu {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .menu li {
+    width: 100%;
+  }
+
+  .menu li a {
+    padding: 16px 12px;
+    text-align: center;
   }
 }
 
@@ -450,17 +569,31 @@ a:hover {
   display: flex;
   justify-content: center;
   align-items: stretch;
+    @media (max-width: 768px) {
+     height: auto;
+  }
+    @media (max-width: 576px) {
+      height: 629px;
+  }
 }
 
 .subscription > .container {
   height: 100%;
   align-items: stretch;
+  @media (max-width: 576px) {
+    flex-direction: column;
+  }
+
 }
 
 .subscription-left {
   flex: 5;
   height: 100%;
   overflow: hidden;
+  @media (max-width: 576px) {
+    padding: 0;
+    flex: 1;
+  }
 }
 
 .sub-img {
@@ -483,6 +616,10 @@ a:hover {
   gap: 24px;
   padding: 0 40px;
   flex: 7;
+   @media (max-width: 768px) {
+    padding: 0 0 40px 0;
+    flex: 1;
+  }
 }
 
 .sub-info {
@@ -490,6 +627,9 @@ a:hover {
   flex-direction: column;
   gap: 24px;
   width: 100%;
+  @media (max-width: 576px) {
+       gap: 12px;
+  }
 }
 
 .sub-title {
@@ -501,12 +641,22 @@ a:hover {
 .sub-title h2 {
   font-size: 80px;
   line-height: 1.2;
+  @media (max-width: 768px) {
+    font-size: 60px;
+  }
+  @media (max-width: 576px) {
+    font-size: 40px;
+  }
 }
 
 .sub-desc {
   color: var(--neutral-0);
   font-family: "Noto Sans", sans-serif;
   font-weight: 500;  
+  @media (max-width: 576px) {
+    font-size: 14px;
+  }
+
 }
 
 .sub-group {
@@ -517,6 +667,9 @@ a:hover {
   padding: 8px 8px 8px 32px;
   background: transparent;
   width: 100%;
+    @media (max-width: 576px) {
+      padding: 8px 8px 8px 20px;
+  }
 }
 
 .sub-input {
@@ -526,6 +679,11 @@ a:hover {
   background: transparent;
   color: var(--neutral-0);
   font-size: 16px;
+  width: 100%;
+  @media (max-width: 576px) {
+      font-size: 14px;
+      overflow-wrap: anywhere;
+  }
 }
 
 .sub-input::placeholder {
@@ -542,6 +700,9 @@ a:hover {
   font-weight: 500;
   cursor: pointer;
   white-space: nowrap;
+  @media (max-width: 576px) {
+      font-size: 14px;
+  }
 }
 
 .sub-submit:hover {
@@ -554,18 +715,26 @@ a:hover {
   background-color:var(--primary-900);
 }
 
+
 .contact {
   display: flex;
   justify-content: space-between;
   padding: 80px 0;
+  flex-wrap: wrap;
   width: 100%;
+    @media (max-width: 576px) {
+    flex-direction: column;
+  }
 }
 
 .contact-info {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-direction: column;
-  flex: 5; 
+  flex: 5;
+  @media (max-width: 576px) {
+    padding: 0;
+  }
 }
 
 .contact-title {
@@ -577,6 +746,12 @@ a:hover {
 .contact-title h2 {
   font-size: 80px;
   line-height: 1.2;
+  @media (max-width: 768px) {
+    font-size: 60px;
+  }
+    @media (max-width: 576px) {
+    font-size: 40px;
+  }
 }
 
 .contact-desc {
@@ -592,19 +767,21 @@ a:hover {
   padding-top: 68px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  
 }
 
 .contact-social ul{
   display: flex;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .contact-social ul li{
-  padding: 16px;
-  display: block;
-  text-align: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid var(--neutral-0);
   aspect-ratio: 1 / 1;
   border-radius: 50%;
@@ -622,9 +799,15 @@ a:hover {
 .contact-email {
   display: flex;
   align-items: center;
+  max-width: 100%;
+  min-width: 0;
+  flex-wrap: wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
    .icon {
     font-size: 18px;
     margin-right: 8px;
+    flex-shrink: 0;
   }
     &:hover {
     color: var(--primary-500);
@@ -633,17 +816,22 @@ a:hover {
 }
 
 .contact-form {
-  width: 58%;
   display: flex;
   flex-direction: column;
   gap: 24px;
   padding: 0 40px;
-  flex: 7; 
+  flex: 7;
+  @media (max-width: 576px) {
+    padding: 0;
+  }
 }
 
 .form-row {
   display: flex;
   gap: 24px;
+  @media (max-width: 576px) {
+   flex-direction: column;
+  }
 }
 
 .form-input {
@@ -654,6 +842,9 @@ a:hover {
   border-radius: 40px;
   outline: none;
   padding: 20px 32px;
+  @media (max-width: 576px) {
+      padding: 16px 20px;
+  }
 }
 
 .form-input::placeholder {
@@ -670,6 +861,9 @@ a:hover {
   outline: none;
   resize: none;
   padding: 20px 32px;
+    @media (max-width: 576px) {
+      padding: 16px 20px;
+  }
 }
 
 .form-textarea::placeholder {
@@ -688,5 +882,90 @@ a:hover {
 
 .form-submit:hover {
   background: #ddd0be;
+}
+
+@media (max-width: 768px) {
+  .contact {
+    flex-direction: column;
+    padding: 40px 0;
+  }
+
+  .contact-info {
+    display: contents;
+    padding-bottom: 24px;
+  }
+
+  .contact-title {
+    order: 1;
+    margin-bottom: 12px;
+  }
+
+  .contact-desc {
+    font-size: 14px;
+    order: 2;
+  }
+
+  .contact-form {
+    order: 3;
+    width: 100%;
+    padding: 0;
+    margin-top: 24px;
+    gap: 12px;
+    border-radius: 32px;
+  }
+
+  .contact-social {
+    order: 4;
+    margin-top: 24px;
+    padding: 0;
+    width: 100%;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 375px) {
+  .sub-title h2 {
+    font-size: 32px;
+    line-height: 1.15;
+    max-width: 100%;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+
+  .sub-title,
+  .sub-desc,
+  .sub-group {
+    width: 100%;
+    @media (max-width: 331px) {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+  }
+  .contact-title h2 {
+    font-size: 32px;
+    line-height: 1.15;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 768px) {
+  .subscription-left,
+  .sub-img,
+  .sub-img img {
+    width: 100%;
+  }
+
+  .subscription-left {
+    width: calc(100% + 24px);
+    margin-left: -12px;
+    margin-right: -12px;
+  }
+
+  .sub-img img {
+    display: block;
+    height: auto;
+  }
 }
 
